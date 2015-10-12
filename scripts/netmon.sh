@@ -27,7 +27,7 @@ gw=$(ip route | awk '/default/ { print $3 }')
 
 if [ $(ping -c 1 $gw | grep icmp* | wc -l) = 0 ];
     then
-        while [ $(ping -c1 $gw | grep icmp* | wc -l) = 0 ]
+        while [ $(ping -c 1 -w 2 $gw | grep icmp* | wc -l) = 0 ]
         do
             echo "No connection to gateway"
             sleep 1
@@ -51,7 +51,7 @@ fi
 echo $(date +%H-%M-%S): "[!] Test started" >> $file
 while true;
 do
-    if [ $(ping -c 1 google.com | grep icmp* | wc -l) = 1 ]
+    if [ $(ping -c 1 -w 2 google.com | grep icmp* | wc -l) = 1 ]
     then
         clear
         echo "Internet connection is alive"
@@ -59,9 +59,10 @@ do
         clear
     else
         echo -e "\n"$(date +%H.%M.%S)": Internet connection down" >> $file
-        if [ $(ping -c 1 8.8.8.8 | grep icmp* | wc -l) = 1 ]
+        if [ $(ping -c 1 -w 2 8.8.8.8 | grep icmp* | wc -l) = 1 ]
         then
-            echo -e "\n"$(date +%H.%M.%S)": Issue with DNS-server" >> $file   
+            echo -e "\n"$(date +%H.%M.%S)": Issue with DNS-server" >> $file 
+            echo "Possible issues with dns-server"
         else
             if [ $# -gt 0 ] && [ $1 = "-g" ]
             then
@@ -69,7 +70,7 @@ do
             fi
         fi
         
-        while [ $(ping -c 1 8.8.8.8 | grep icmp* | wc -l) != 1 ]
+        while [ $(ping -c 1 -w 2 8.8.8.8 | grep icmp* | wc -l) != 1 ]
         do
             clear
             echo "Internet connection dead"
