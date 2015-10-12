@@ -9,7 +9,8 @@
 #or
 # $bash netmon.sh
 #
-# Check gateway when internet connectiin down.
+# Check gateway when internet connection down.
+# $./netmon.sh -g
 
 file="netmon_"$(date +%D.log | tr "/" "_")
 
