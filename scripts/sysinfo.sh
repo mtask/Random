@@ -114,7 +114,7 @@ clear
 while [ "$action" != "x" ]
 do
     echo "- - - - - - - - - - - -"
-    echo -e "${red}   BIS: Bash Info Scraper${neutral}"
+    echo -e "${red}   System info${neutral}"
     echo "- - - - - - - - - - - -"
     echo -e "\nSelect action and press enter:" 
  
