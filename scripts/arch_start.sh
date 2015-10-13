@@ -6,9 +6,8 @@
 #!Script not ready!"
 
 package_installs(){
-    echo "Install usefull utilies:"
-
     packs=( openssh
+    net-tools
     atom-editor-bin
     git
     wireshark-qt
@@ -38,7 +37,6 @@ package_installs(){
     diffutils
     make
     libtool )
-
     yaourt -S --noconfirm --needed ${packs[@]}
 
 }
