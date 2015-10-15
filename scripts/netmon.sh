@@ -48,6 +48,15 @@ then
     fi
 fi
 
+#Checks that user has access to ping cmd
+permissions="ping: icmp open socket: Operation not permitted"
+test_permission=$((ping -c 1 -w 1 127.0.0.1)2>&1)
+
+if [ "$test_permission" = "$permissions" ]; then
+   echo -e "[!] No permission to use ping\nexiting.." 
+   exit
+fi
+exit
 echo $(date +%H-%M-%S): "[!] Test started" >> $file
 while true;
 do
