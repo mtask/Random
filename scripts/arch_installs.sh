@@ -36,7 +36,7 @@ package_installs(){
     automake
     diffutils
     make
-    pypy-pip
+    python2-pip
     mplayer
  )
     yaourt -S --noconfirm --needed ${packs[@]}
