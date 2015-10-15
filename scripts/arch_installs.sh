@@ -3,7 +3,7 @@
 #Author:
 #mtask@github.com
 
-#Just some useful/needee packages I install in fresh system
+#Just some useful/needed packages I install to fresh system.
 
 package_installs(){
     packs=( openssh
@@ -37,6 +37,7 @@ package_installs(){
     diffutils
     make
     pypy-pip
+    mplayer
  )
     yaourt -S --noconfirm --needed ${packs[@]}
 }
