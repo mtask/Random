@@ -3,7 +3,7 @@
 #Author:
 #mtask@github.com
 
-#!Script not ready!"
+#Just some useful/needee packages I install in fresh system
 
 package_installs(){
     packs=( openssh
@@ -43,7 +43,7 @@ package_installs(){
 
 yaourt_install(){
     sudo pacman -S --noconfirm --needed base-devel yajl binutils make gcc wget
-    sudo pacman -S --noconfirm yaourt
+    sudo pacman -S --noconfirm --needed yaourt
     if [[ $? != 0 ]]; then
         mkdir -p ~/temp/AUR/ && cd ~/temp/AUR/
         #package-query
@@ -70,5 +70,5 @@ if [[ "$ping_goo" = 0 ]]; then
     exit 0
 fi
 
-#yaourt_install
+yaourt_install
 package_installs
