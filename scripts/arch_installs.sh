@@ -22,7 +22,7 @@ package_installs(){
     gnu-netcat
     curl
     virtualbox
-    virtualbox-guest-utils
+    virtualbox-host-modules
     alsa-oss
     alsa-lib
     alsa-utils
