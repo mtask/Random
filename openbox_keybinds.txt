@@ -1,4 +1,4 @@
-Add keyboard's volume controls to ~.config/openbox/rc.xml:
+#Add keyboard's volume controls to ~.config/openbox/rc.xml:
 
    <keybind key="XF86AudioRaiseVolume">
      <action name="Execute"> 
@@ -16,7 +16,7 @@ Add keyboard's volume controls to ~.config/openbox/rc.xml:
      </action>
   </keybind>
 
-Add brightness controls:
+#Add brightness controls:
 
     <keybind key="XF86MonBrightnessUp">
       <action name="Execute">
