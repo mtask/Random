@@ -1,4 +1,4 @@
-#!/usr/bin/python
+#!/usr/bin/python2
 
 import subprocess, threading, time, sys, netifaces, os
 
@@ -61,6 +61,5 @@ class sweeper(object):
         
  
 if __name__ == "__main__":
-#   sweeper().sweep()
-    pass
+    sweeper().sweep()
     
