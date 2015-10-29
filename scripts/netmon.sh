@@ -12,7 +12,7 @@
 # Check gateway when internet connection down.
 # $./netmon.sh -g
 
-file="netmon_"$(date +%D.log | tr "/" "_")
+file="~/netmon_"$(date +%D.log | tr "/" "_")
 
 help_menu(){
 clear
