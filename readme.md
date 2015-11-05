@@ -1,2 +1,2 @@
-Random Linux related things.
-Also some python scripts and useful functions.
+Random Linux, android and programming related things.
+Also some python and bash scripts.
