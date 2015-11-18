@@ -37,7 +37,7 @@ file="~/netmon_"$(date +%D.log | tr "/" "_")
 
 help_menu(){
 clear
-echo "Example usage: ./net_test.sh"
+echo "Example usage: ./netmon.sh"
 echo "-g check connection to gateway if internet connection down"
 exit 0
 }
@@ -77,7 +77,6 @@ if [ "$test_permission" = "$permissions" ]; then
    echo -e "[!] No permission to use ping\nexiting.." 
    exit
 fi
-exit
 echo $(date +%H-%M-%S): "[!] Test started" >> $file
 while true;
 do
