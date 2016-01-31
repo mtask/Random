@@ -1,8 +1,12 @@
 #!/bin/bash
 
-# Small network mapper script
-
 # Author mtask @github.com
+# Small network mapper + sport scanner script
+# Usage:
+# ./lanmap.sh <ip range> <port range>
+# Example:
+# ./lanmap.sh 10.0.0.1-255 100-200
+
 
 if [[ $# != "2" ]]; then
    echo "Invalid arguments!"
