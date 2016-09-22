@@ -13,16 +13,10 @@ import datetime
 import time
 
 """
-Server monitoring script to put in cron or task scheduler depending on OS of choice.
+Server monitoring script to put in cron.
 """
 
-if os.name == 'posix':
-    logging.basicConfig(filename='/var/log/monitor.log',level=logging.DEBUG)
-elif os.name == 'nt':
-    logging.basicConfig(filename='C:\\Windows\\System32\\Logs\\monitor.log',level=logging.DEBUG)
-else:
-    logging.basicConfig(filename='monitor.log',level=logging.DEBUG)
-
+logging.basicConfig(filename='/var/log/monitor.log',level=logging.DEBUG)
 
 class Monitor(object):
 
