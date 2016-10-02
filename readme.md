@@ -40,13 +40,11 @@ Random scripts and stuff
      
        Wrapper for making quick netcat web server.
 
-- Powershell
-
-   - wp_randomizer.ps1
-   
-       Randomize your wallpaper.
-
 - Python
+
+    - servermonitor.py
+
+       Server monitoring script which informs issues to Administrator  via email
 
     - geoping.py
     
