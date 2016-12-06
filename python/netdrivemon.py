@@ -34,5 +34,5 @@ except OSError as oe:
        logging.info('Drive remapped successfully')
     else :
         logging.warning('Error (code): ' + str(res))
-except Exception as e: #Logitetaan jos odottamaton virhe tulee
+except Exception as e: 
     logging.debug(str(e))
