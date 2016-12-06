@@ -61,3 +61,7 @@ Random scripts and stuff
     - sweep.py
     
        Fast ping sweep.
+       
+    - netdrivemon.py
+    
+       Check if mapped network drive (e.g. webdav) is connected fine and re-map if it's not.
