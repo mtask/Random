@@ -16,7 +16,7 @@ try:
     #####
     # Put path here which is accessible IF networkd drive is mapped and connected
     #####
-    os.listdir("M:/mapped/webdav/path")
+    os.listdir("W:/mapped/webdav/path")
     logging.info('Path is accessible')
 except OSError as oe:
     # If path is not accessible'
