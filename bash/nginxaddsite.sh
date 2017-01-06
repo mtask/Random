@@ -1,7 +1,7 @@
 
 nginxsite()
 {
-    tee > server.txt  << EOF 
+    tee > $domain  << EOF 
 server {
     listen 443;
     ssl                 on;
