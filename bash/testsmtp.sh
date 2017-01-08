@@ -12,9 +12,8 @@ RCPT TO: <$to>
 DATA
 From: <$from>
 To: <$to>
-Subject: Testing one two three
-"This is only a test. Please do not panic. If this works, then all is well, else all is not well."
-"In closing, Lorem ipsum dolor sit amet, consectetur adipiscing elit."
+Subject: Testing testing
+Testing, testing..
 .
 quit
 EOF
