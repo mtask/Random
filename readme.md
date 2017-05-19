@@ -66,5 +66,6 @@ Random scripts and stuff
     
        Check if mapped network drive (e.g. webdav) is connected fine and re-map if it's not.
 
-    -backup.py
+    - backup.py
+      
        Backup script that takes two arguments: source and destination. It checks if source and destination have sove differing files and then copys those to destination. BAsically this is wrapper for few robocopy and xcopy commands.
