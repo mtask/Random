@@ -1,3 +1,5 @@
+#!/bin/bash
+
 apt-get update -y && apt-get upgrade -y && apt-get install -y ufw sudo && clear
 
 read -p "New User: " USERNAME
