@@ -1,5 +1,39 @@
 Random scripts and stuff
 
+- Python
+
+    - ipinfo.py
+    
+        Small script to get location info based on IP or domain. It also can list IP-addresses of country (info is based on http://ipdeny.com) when given Country Code as argument. 
+
+    - servermonitor.py
+
+       Server monitoring script which informs issues to Administrator  via email
+
+    - geoping.py
+    
+       Ping multiple hosts and draw map where hosts are marked with red and green plots based on their up/down status.
+       
+    - input_2_3.py
+     
+       Get user input in both python 2 and python 3 with same function.
+       
+    - pydump.py
+    
+       Simple scapy based packet_analyzer.
+       
+    - sweep.py
+    
+       Fast ping sweep.
+       
+    - netdrivemon.py
+    
+       Check if mapped network drive (e.g. webdav) is connected fine and re-map if it's not.
+
+    - backup.py
+      
+       Backup script that takes two arguments: source and destination. It checks if source and destination have sove differing files and then copys those to destination. BAsically this is wrapper for few robocopy and xcopy commands.
+
 - Android
 
     - package_name.sh
@@ -39,33 +73,3 @@ Random scripts and stuff
     - www.sh
      
        Wrapper for making quick netcat web server.
-
-- Python
-
-    - servermonitor.py
-
-       Server monitoring script which informs issues to Administrator  via email
-
-    - geoping.py
-    
-       Ping multiple hosts and draw map where hosts are marked with red and green plots based on their up/down status.
-       
-    - input_2_3.py
-     
-       Get user input in both python 2 and python 3 with same function.
-       
-    - pydump.py
-    
-       Simple scapy based packet_analyzer.
-       
-    - sweep.py
-    
-       Fast ping sweep.
-       
-    - netdrivemon.py
-    
-       Check if mapped network drive (e.g. webdav) is connected fine and re-map if it's not.
-
-    - backup.py
-      
-       Backup script that takes two arguments: source and destination. It checks if source and destination have sove differing files and then copys those to destination. BAsically this is wrapper for few robocopy and xcopy commands.
