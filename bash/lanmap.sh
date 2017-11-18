@@ -21,11 +21,11 @@ PORTS="$2"
 
 
 for ip in $(seq "$START" "$END"); do 
-    if [[ $(ping -c 1 -w 1 "$BASE""$ip" | grep icmp* | wc -l) = 1 ]]
+    if [[ $(ping -c 1 -W 1 "$BASE""$ip" | grep icmp* | wc -l) = 1 ]]
     then
         echo -e "$BASE" "$ip" "is up."
         echo "Scanning ports:"
-        nc -n -w 1 -zv "$BASE""$ip" "$PORTS" 2>&1 | grep open
+        nc -n -W 1 -zv "$BASE""$ip" "$PORTS" 2>&1 | grep open
     fi
         
 done
