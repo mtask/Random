@@ -41,10 +41,10 @@ class Monitor(object):
             logging.info(self.time+': Disk usage is ok')
             return False
 
-    def memory_usage_high(self, max_usage=float(90)):
+     def memory_usage_high(self, max_usage=float(90)):
         self.max_usage = max_usage
         try:
-            self.used_per = psutil.phymem_usage()[3]
+            self.used_per = psutil.virtual_memory()[2]
             if self.used_per > self.max_usage:
                 logging.warning(self.time+': Physical memory usage high')
                 return True
@@ -93,7 +93,7 @@ class Monitor(object):
 
 class Email(object):
 
-    def send(self, body], smtpserver, to=[):
+    def send(self, body, smtpserver, to="something"):
         self.time = str(datetime.datetime.now())
         self.content = body
         self.from_server = socket.gethostname()
