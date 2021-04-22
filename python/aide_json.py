@@ -4,10 +4,32 @@ import subprocess
 import re
 import os
 import argparse
+import json
 
 """
 JSON logging for Advanced Intrusion Detection Environment (AIDE)
+
+Example output:
+{
+  "event": {
+    "action": "changed",
+    "provider": "AIDE"
+  },
+  "file": {
+    "ctime": "2021-04-22 14:23:07 +0300",
+    "path": "/etc/subuid-",
+    "mtime": "2021-04-22 13:38:28 +0300",
+    "size": 42,
+    "directory": "",
+    "attributes": "f <.... mc..C.. .",
+    "sha256": "wGT11JP783BlTv609FbuvFciwgCHfBiRuLDDHAAVJJw=",
+    "hash": {
+      "sha256": "wGT11JP783BlTv609FbuvFciwgCHfBiRuLDDHAAVJJw="
+    }
+  }
+}
 """
+
 
 def get_entry():
     entry = { "file": { "ctime": None, "mtime": None, "size": None, "path": '', "attributes": '', "directory": '', "hash": {"sha256": ''} }, "event": { "action": '', "provider": 'AIDE'} }
@@ -119,7 +141,8 @@ if not os.path.isdir('/var/log/aide/'):
 
 with open('/var/log/aide/check.log', 'a+') as f:
     for result in entry_list:
-        f.write("{}\n".format(result))
+        json.dump(result, f)
+        f.write('\n')
         if args.verbose:
             print(result)
 os.chmod('/var/log/aide/check.log', 0o600)
