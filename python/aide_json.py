@@ -10,7 +10,7 @@ JSON logging for Advanced Intrusion Detection Environment (AIDE)
 """
 
 def get_entry():
-    entry = { "file": { "path": '', "attributes": '', "directory": ''}, "event": { "action": '', "provider": 'AIDE'} }
+    entry = { "file": { "ctime": None, "mtime": None, "size": None, "path": '', "attributes": '', "directory": '', "hash": {"sha256": ''} }, "event": { "action": '', "provider": 'AIDE'} }
     return entry
 
 def check_line(line, type):
@@ -28,6 +28,20 @@ def check_line(line, type):
         entry['file']['attributes'] = details
         return entry
 
+def combine_details_to_events(entry_list, details):
+    for entry in entry_list:
+        if entry['file']['path'] in details:
+            current = entry['file']['path']
+        elif entry['file']['directory'] in details:
+            current = entry['file']['directory']
+        else:
+            continue
+        for key in details[current]:
+            if key == 'sha256':
+                entry['file']['hash']['sha256'] = details[current][key]
+            entry['file'][key] = details[current][key]
+    return entry_list
+
 parser = argparse.ArgumentParser()
 parser.add_argument("-v", "--verbose", help="increase output verbosity", action="store_true")
 args = parser.parse_args()
@@ -40,9 +54,13 @@ except subprocess.CalledProcessError as exc:
 added = False
 changed = False
 removed = False
+detailed = False
+current_detailed = False
 results = []
+details = {}
 regex = '^(f|d).*:\s.*'
-for line in result.decode('utf-8').split('\n'):
+result = iter(result.decode('utf-8').split('\n'))
+for line in result:
    res = None
    if 'Added entries' in line:
        added = True
@@ -55,6 +73,11 @@ for line in result.decode('utf-8').split('\n'):
        changed = True
        removed = False
        continue
+   elif 'Detailed information about changes' in line:
+       detailed = True
+       changed = False
+   elif 'attributes of the' in line:
+       detailed = False
    if added:
        res = check_line(line, 'added')
    elif removed:
@@ -63,13 +86,39 @@ for line in result.decode('utf-8').split('\n'):
        res = check_line(line, 'changed')
    if res:
        results.append(res)
+   if detailed:
+       if 'File:' in line:
+           current_detailed = line.split('File:')[1].strip()
+           continue
+       elif 'Directory:' in line:
+           current_detailed = line.split('Directory:')[1].strip()
+           continue
+       if current_detailed and line.strip() != '':
+           if current_detailed not in details:
+               details[current_detailed] = {}
+           if "Size" in line:
+               size = line.split(':')[1].split('|')[1].strip()
+               details[current_detailed]['size'] = int(size)
+           elif "Mtime" in line:
+               mtime = line.split('Mtime    :')[1].split('|')[1].strip()
+               details[current_detailed]['mtime'] = mtime
+           elif "Ctime" in line:
+               ctime = line.split('Ctime    :')[1].split('|')[1].strip()
+               details[current_detailed]['ctime'] = ctime
+           elif "SHA256" in line:
+               sha256_1 = line.split('SHA256   :')[1].split('|')[1].strip()
+               sha256_2 = next(result).split('|')[1].strip()
+               sha256 = sha256_1 + sha256_2
+               details[current_detailed]['sha256'] = sha256
+
+entry_list = combine_details_to_events(results, details)
 
 if not os.path.isdir('/var/log/aide/'):
     os.mkdir('/var/log/aide/')
     os.chmod('/var/log/aide/', 0o750)
 
 with open('/var/log/aide/check.log', 'a+') as f:
-    for result in results:
+    for result in entry_list:
         f.write("{}\n".format(result))
         if args.verbose:
             print(result)
